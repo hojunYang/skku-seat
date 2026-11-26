@@ -40,14 +40,7 @@ export async function requestJson<T>(path: string, options: RequestOptions = {})
 	try {
 		response = await fetch(`${SKKU_LIBRARY_BASE_URL}${path}`, {
 			method,
-			headers: {
-				Accept: 'application/json',
-				'Accept-Language': 'ko-KR,ko;q=0.9,en;q=0.8',
-				Origin: SKKU_LIBRARY_BASE_URL,
-				Referer: `${SKKU_LIBRARY_BASE_URL}/`,
-				'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36',
-				...headers
-			},
+			headers: { Accept: 'application/json', ...headers },
 			...(body === undefined ? {} : { body: JSON.stringify(body) }),
 			redirect: 'manual',
 			signal: AbortSignal.timeout(REQUEST_TIMEOUT_MS)
